@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Чат с ботом</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="chat-container">
+  {% for message in messages %}
+    <div class="message {{'bot' if loop.index % 2 == 0 else 'user'}}">
+      <span>{{ message.text }}</span>
+      <br>
+      <small>{{ message.timestamp }}</small>
+    </div>
+  {% endfor %}
+
+  <form method="post" class="input-container" enctype="multipart/form-data">
+    <input type="text" name="text" placeholder="Сообщение..." required autofocus />
+    <input type="file" name="file" />
+    <input type="submit" value="Отправить" />
+  </form>
+</div>
+</body>
+</html>
